@@ -1,15 +1,13 @@
 "use strict"
 
-const Options = require("./VguangScannerOptions");
 const { EventEmitter } = require("events");
 const usb = require("usb");
 const VguangScannerOptions = require("./VguangScannerOptions");
-const { resolve, parse } = require("path");
 
 class VguangScanner extends EventEmitter {
     constructor (options) {
         super();
-        this.options = new Options(options);
+        this.options = new VguangScannerOptions(options);
         this._outEdps = [];
         this._inEdps  = [];
         this._findDevice();
