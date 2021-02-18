@@ -1,6 +1,6 @@
 {
-  "name": "tx200-test",
-  "version": "1.0.0",
+  "name": "vguang-scanner",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
