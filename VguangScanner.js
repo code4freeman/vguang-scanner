@@ -2,12 +2,13 @@
 
 const { EventEmitter } = require("events");
 const usb = require("usb");
-const VguangScannerOptions = require("./VguangScannerOptions");
+const VguangScannerOption = require("./VguangScannerOption");
+const { platform } = require("os");
 
 class VguangScanner extends EventEmitter {
     constructor (options) {
         super();
-        this.options = new VguangScannerOptions(options);
+        this.options = new VguangScannerOption(options);
         this._outEdps = [];
         this._inEdps  = [];
         this._findDevice();
@@ -18,7 +19,7 @@ class VguangScanner extends EventEmitter {
     }
 
     _findDevice () {
-        const { vid } = VguangScannerOptions.Modes[this.options.mode];
+        const { vid } = VguangScannerOption.Modes[this.options.mode];
         const device = 
         usb.getDeviceList()
         .filter(d =>{
@@ -36,6 +37,9 @@ class VguangScanner extends EventEmitter {
         }
         device.open();
         device.interfaces.forEach(ifa => {
+            if (platform() !== "win32" && ifa.isKernelDriverActive()) {
+                ifa.detachKernelDriver();
+            }
             ifa.claim();
             ifa.endpoints.forEach(edp => {
                 if (edp.direction === "in") {
@@ -143,6 +147,6 @@ VguangScanner.Events = {
     "data": "data",
     "error": "error"
 }
-VguangScanner.VguangScannerOptions = VguangScannerOptions;
+VguangScanner.VguangScannerOption = VguangScannerOption;
 
 module.exports = VguangScanner;
