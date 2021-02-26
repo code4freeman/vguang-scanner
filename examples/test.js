@@ -1,4 +1,4 @@
-const VguangScanner = require("../index");
+const VguangScanner = require("../VguangScanner");
 
 const scanner = new VguangScanner({ mode: "tx200" });
 
@@ -8,8 +8,10 @@ const scanner = new VguangScanner({ mode: "tx200" });
 setTimeout(() => {
     scanner.toggleLight(true);
 }, 2000);
+let num = 0;
 scanner.on("data", code => {
     console.log("数据：");
     console.log(code);
-    scanner.beep(1);
-});
+    scanner.beep(1, 20);
+    num++;
+    console.log(`第${num

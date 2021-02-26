@@ -4,6 +4,8 @@ const { EventEmitter } = require("events");
 const usb = require("usb");
 const VguangScannerOption = require("./VguangScannerOption");
 const { platform } = require("os");
+const { rejects } = require("assert");
+const { resolve } = require("path");
 
 class VguangScanner extends EventEmitter {
     constructor (options) {
@@ -56,9 +58,16 @@ class VguangScanner extends EventEmitter {
      * 
      * @param {Array<Number>} bins
      */
-    _write (bins = []) {
+    async _write (bins = []) {
         const buf = buildBytes(bins);
-        this._outEdps.forEach(outEdp => outEdp.transfer(buf));
+        await new Promise((resolve, reject) => {
+            // 实测tx200 输出端点有俩，第0个写入最终会导致LIBUSB_ERROR_NO_MEM报错！
+            // 用第1个就没问题， 之后开发tx400的时候再来留意一下。
+            this._outEdps[1].transfer(buf, err => {
+                if (err) reject(err);
+                else resolve();
+            });
+        });
         function buildBytes (bins = []) {
             const 
             // 先提取出命令字
