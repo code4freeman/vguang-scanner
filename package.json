@@ -1,13 +1,18 @@
 {
   "name": "vguang-scanner",
-  "version": "1.0.2",
-  "description": "",
+  "version": "1.1.0",
+  "description": "微光扫码器nodejs驱动",
   "main": "VguangScanner.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "bin": {
+    "vguangscanner": "bin/index.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "qrscaner",
+    "scanner",
+    "qrcode",
+    "qr"
+  ],
+  "author": "lilindog<lilin@lilin.site>",
   "license": "ISC",
   "dependencies": {
     "usb": "^1.6.3"

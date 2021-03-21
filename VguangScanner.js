@@ -4,8 +4,6 @@ const { EventEmitter } = require("events");
 const usb = require("usb");
 const VguangScannerOption = require("./VguangScannerOption");
 const { platform } = require("os");
-const { rejects } = require("assert");
-const { resolve } = require("path");
 
 class VguangScanner extends EventEmitter {
     constructor (options) {
@@ -21,7 +19,7 @@ class VguangScanner extends EventEmitter {
     }
 
     _findDevice () {
-        const { vid } = VguangScannerOption.Modes[this.options.mode];
+        const { pid } = VguangScannerOption.Modes[this.options.mode];
         const device = 
         usb.getDeviceList()
         .filter(d =>{
@@ -31,7 +29,7 @@ class VguangScanner extends EventEmitter {
                 }).length;
             }).length;
         })
-        .filter(d => d.deviceDescriptor.idVendor === vid)[0];
+        .filter(({ deviceDescriptor: {idProduct, idVendor} }) => idVendor === VguangScannerOption.Vid && idProduct === pid)[0];
         if (!device) {
             const errorEventName = VguangScanner.Events["error"], msg = `Device mode ${this.options.mode} not found！`;
             if (this.listenerCount(errorEventName)) return this.emit(errorEventName, msg);

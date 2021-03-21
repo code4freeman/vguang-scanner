@@ -1,21 +1,25 @@
 "use strict"
 
-class VguangScannerOptions {
+class VguangScannerOption {
     constructor (options = {}) {
-        Object.keys(VguangScannerOptions.Fields).forEach(k => {
-            const paramStruct = VguangScannerOptions.Fields[k];
-            if (paramStruct.required) if (options[k] === undefined) throw `VguangScannerOptions.fields[${k}] 参数为必选，不能缺省！`;
+        Object.keys(VguangScannerOption.Fields).forEach(k => {
+            const paramStruct = VguangScannerOption.Fields[k];
+            if (paramStruct.required) if (options[k] === undefined) throw `VguangScannerOption.fields[${k}] 参数为必选，不能缺省！`;
             if (options[k] !== undefined) paramStruct.check(options[k]);
             this[k] = options[k];
         });
     }
 }
-VguangScannerOptions.Modes = {
+VguangScannerOption.Vid = 1317;
+VguangScannerOption.Modes = {
     "tx200": {
-        vid: 1317,
+        pid: 0,
+    },
+    "tx400": {
+        pid: 42156,
     }
 }
-VguangScannerOptions.Fields = {
+VguangScannerOption.Fields = {
     /**
      * 型号 
      */
@@ -23,9 +27,9 @@ VguangScannerOptions.Fields = {
         required: true,
         type: String,
         check (value) {
-            if (!(value in VguangScannerOptions.Modes)) throw `mode 只能为VguangScannerOptions.modes 中的参数！`;
+            if (!(value in VguangScannerOption.Modes)) throw `mode 只能为VguangScannerOption.modes 中的参数！`;
         }
     },
 }
 
-module.exports = VguangScannerOptions;
+module.exports = VguangScannerOption;
