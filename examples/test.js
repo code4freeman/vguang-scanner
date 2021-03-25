@@ -1,6 +1,6 @@
 const VguangScanner = require("../VguangScanner");
 
-const scanner = new VguangScanner({ mode: "tx400" });
+const scanner = new VguangScanner({ mode: "tx200" });
 
 scanner.on("data", data => {
     console.log(data);

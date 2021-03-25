@@ -13,7 +13,7 @@ class VguangScannerOption {
 VguangScannerOption.Vid = 1317;
 VguangScannerOption.Modes = {
     "tx200": {
-        pid: 0,
+        pid: 42156,
     },
     "tx400": {
         pid: 42156,
