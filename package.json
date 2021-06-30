@@ -3,9 +3,7 @@
   "version": "2.1.0",
   "description": "微光扫码器nodejs驱动",
   "main": "src/VguangScanner.js",
-  "bin": {
-    
-  },
+  "bin": {},
   "keywords": [
     "qrscaner",
     "scanner",

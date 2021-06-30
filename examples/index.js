@@ -11,7 +11,7 @@ stack.push = function (...args) {
 
 scanner.on("data", data => {
     if (!stack.includes(data)) {
-        scanner.beep();
+        // scanner.beep();
         stack.push(data);
     } 
     console.log(stack);

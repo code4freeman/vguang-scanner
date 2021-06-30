@@ -3,6 +3,7 @@
 const { EventEmitter } = require("events");
 const HID = require("node-hid");
 const VguangScannerOption = require("./VguangScannerOption");
+const platform = require("os").platform();
 
 class VguangScanner extends EventEmitter {
     constructor (options) {
@@ -36,10 +37,21 @@ class VguangScanner extends EventEmitter {
         const 
             { pid } = VguangScannerOption.Modes[this.options.mode],
             vid = VguangScannerOption.Vid;
-        try {
-            this._device = new HID.HID(vid, pid);
-        } catch(err) {
-            this._error(err);
+            
+        if (platform === "linux") {
+            const { path } = HID.devices().filter(item => item.vendorId === vid && item.productId === pid).pop();
+            try {
+                this._device = new HID.HID(path);
+            } catch(err) {
+                this._error(err);
+            }
+        } 
+        else {
+            try {
+                this._device = new HID.HID(vid, pid);
+            } catch(err) {
+                this._error(err);
+            }
         }
         this._device.on("error", this._error.bind(this));
     }
