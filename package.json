@@ -1,10 +1,10 @@
 {
   "name": "vguang-scanner",
-  "version": "1.1.0",
+  "version": "2.1.0",
   "description": "微光扫码器nodejs驱动",
-  "main": "VguangScanner.js",
+  "main": "src/VguangScanner.js",
   "bin": {
-    "vguangscanner": "bin/index.js"
+    
   },
   "keywords": [
     "qrscaner",
@@ -15,6 +15,7 @@
   "author": "lilindog<lilin@lilin.site>",
   "license": "ISC",
   "dependencies": {
+    "node-hid": "^2.1.1",
     "usb": "^1.6.3"
   }
 }
