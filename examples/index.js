@@ -21,5 +21,5 @@ scanner.on("data", data => {
 
 setInterval(() => {
     // scanner.beep();
-    // scanner.blinkRed(3, 200);
+    scanner.blinkRed(3, 200);
 }, 2000);

@@ -49,8 +49,8 @@ class VguangScanner extends EventEmitter {
      */
     _listen () {
         this._device.on("data", chunk => {
-            const data = this._parseBytes(chunk);
-            if (data && !/^\s*\x00\s*$/.test(data)) this.emit(VguangScanner.Events["DATA"], data);
+            const data = this._parseBytes(chunk).replace("\x00", "");
+            if (data) this.emit(VguangScanner.Events["DATA"], data);
         });
     }   
 
