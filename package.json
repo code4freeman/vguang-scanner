@@ -1,6 +1,6 @@
 {
   "name": "vguang-scanner",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "微光扫码器nodejs驱动",
   "main": "src/VguangScanner.js",
   "bin": {},
