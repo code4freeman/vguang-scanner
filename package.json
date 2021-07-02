@@ -1,19 +1,21 @@
 {
-  "name": "vguang-scanner",
-  "version": "2.1.1",
-  "description": "微光扫码器nodejs驱动",
-  "main": "src/VguangScanner.js",
-  "bin": {},
-  "keywords": [
-    "qrscaner",
-    "scanner",
-    "qrcode",
-    "qr"
-  ],
-  "author": "lilindog<lilin@lilin.site>",
-  "license": "ISC",
-  "dependencies": {
-    "node-hid": "^2.1.1",
-    "usb": "^1.6.3"
-  }
+	"name": "vguang-scanner",
+	"version": "2.1.1",
+	"description": "微光扫码器nodejs驱动",
+	"main": "src/VguangScanner.js",
+	"bin": {
+		"vguang-scanner": "bin/index.js"
+	},
+	"keywords": [
+	"qrscaner",
+	"scanner",
+	"qrcode",
+	"qr"
+	],
+	"author": "lilindog<lilin@lilin.site>",
+	"license": "ISC",
+	"dependencies": {
+	"node-hid": "^2.1.1",
+	"usb": "^1.6.3"
+	}
 }

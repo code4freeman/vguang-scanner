@@ -11,6 +11,7 @@
 
 ## 使用
 具体使用请看源码，没几行！   
+全局安装后执行```vguang-scanner```可查看电脑的微光扫码器设备。   
 
 ## 测试效果  
 [测试视频](https://www.bilibili.com/video/BV1yv4y1Z7B2/)
