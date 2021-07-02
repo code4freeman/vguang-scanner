@@ -38,7 +38,7 @@ class VguangScanner extends EventEmitter {
             { pid } = VguangScannerOption.Modes[this.options.mode],
             vid = VguangScannerOption.Vid;
             
-        if (platform === "linux") {
+        if (["linux", "win32"].includes(platform)) {
             const { path } = HID.devices().filter(item => item.vendorId === vid && item.productId === pid).pop();
             try {
                 this._device = new HID.HID(path);
