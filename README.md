@@ -7,7 +7,7 @@
 * TX200
 * TX400 
 
-[微光官网](http://vguang.vip/)
+[微光官网](http://www.vguang.cn/tx200)
 
 ## 使用
 具体使用请看源码，没几行！   
